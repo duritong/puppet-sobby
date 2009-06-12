@@ -1,9 +1,9 @@
-# manifests/init.pp - manage onak stuff
+# manifests/init.pp - manage sobby stuff
 # Copyright (C) 2009 admin@immerda.ch
 # GPLv3
 
 class sobby {
     case $operatingsystem {
-        default: { include onak::base }
+        default: { include sobby::base }
     }
 }
