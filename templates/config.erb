@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sobby_config>
+  <settings>
+    <autosave_directory></autosave_directory>
+    <autosave_file>/var/sobby/servers/<%= sobby_instance_name %>/session</autosave_file>
+    <autosave_interval>10</autosave_interval>
+    <command_directory></command_directory>
+    <name><%= sobby_instance_name %></name>
+    <password><%- unless password.to_s == 'absent' %><%= password %><%- end %></password>
+    <port><%= port %></port>
+  </settings>
+</sobby_config>
