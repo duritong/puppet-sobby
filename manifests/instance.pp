@@ -9,7 +9,8 @@ define sobby::instance(
   $sobby_instance_name = $name
 
   if ($user != 'sobby') and $manage_user {
-    user::managed{"sobby_${name}":
+    $real_user = "sobby_${name}"
+    user::managed{$real_user:
       ensure => $ensure,
       name_comment => 'Sobby instance user',
       gid => '123',
@@ -19,6 +20,8 @@ define sobby::instance(
       shell => '/sbin/nologin',
       before => File["/etc/sobby/${name}.conf"],
     }
+  } else {
+    $real_user = 'sobby'
   }
 
   file{"/etc/sobby/${name}.conf":
@@ -26,6 +29,6 @@ define sobby::instance(
     ensure => $ensure,
     require => Package['sobby'],
     notify => Service['sobby'],
-    owner => $user, group => sobby, mode => 0640;
+    owner => $real_user, group => sobby, mode => 0640;
   }
 }
