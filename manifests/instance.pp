@@ -31,4 +31,13 @@ define sobby::instance(
     notify => Service['sobby'],
     owner => $real_user, group => sobby, mode => 0640;
   }
+
+  if $use_nagios {
+      if $sobby_host {
+        $real_sobby_host = $sobby_host
+      } else {
+        $real_sobby_host = $fqdn
+      }
+      nagios::service{ "sobby_${fqdn}_port_${port}": check_command => "check_sobby!${real_sobby_host}!${port}" }
+  }
 }
