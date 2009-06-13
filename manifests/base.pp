@@ -12,4 +12,12 @@ class sobby::base {
         require => [ Package['sobby'], Package['obby'], Package['net6'] ],
     }
 
+    file{'/opt/bin/sobby_archive.sh':
+        source => "puppet://$server/sobby/scripts/sobby_archive.sh",
+        owner => root, group => 0, mode => 0700;
+    }
+    file{'/etc/cron.d/sobby_archive.cron':
+      content => "*/5 * * * * root /opt/bin/sobby_archive.sh\n",
+      owner => root, group => 0, mode => 0644;
+    }
 }
