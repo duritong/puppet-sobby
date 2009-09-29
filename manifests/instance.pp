@@ -41,6 +41,6 @@ define sobby::instance(
       nagios::service{ "sobby_${fqdn}_port_${port}": check_command => "check_sobby!${real_sobby_host}!${port}" }
   }
   if $use_shorewall {
-    shorewall::rules::soby::instance{$name: port => $port }
+    shorewall::rules::sobby::instance{$name: port => $port }
   }
 }
