@@ -13,7 +13,7 @@ class sobby::base {
     }
 
     file{'/opt/bin/sobby_archive.sh':
-        source => "puppet://$server/sobby/scripts/sobby_archive.sh",
+        source => "puppet://$server/modules/sobby/scripts/sobby_archive.sh",
         owner => root, group => 0, mode => 0700;
     }
     file{'/etc/cron.d/sobby_archive.cron':
