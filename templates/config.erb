@@ -6,7 +6,7 @@
     <autosave_interval>10</autosave_interval>
     <command_directory></command_directory>
     <name><%= sobby_instance_name %></name>
-    <password><%- unless password.to_s == 'absent' %><%= password %><%- end %></password>
+    <password><% unless password.to_s == 'absent' -%><%= password %><% end -%></password>
     <port><%= port %></port>
   </settings>
 </sobby_config>
